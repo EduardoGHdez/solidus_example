@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -7,16 +9,16 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module SolidusExample
+  # Application class
   class Application < Rails::Application
-
     config.to_prepare do
       # Load application's model / class decorators
-      Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
+      Dir.glob(File.join(File.dirname(__FILE__), '../app/**/*_decorator*.rb')) do |c|
         require_dependency(c)
       end
 
       # Load application's view overrides
-      Dir.glob(File.join(File.dirname(__FILE__), "../app/overrides/*.rb")) do |c|
+      Dir.glob(File.join(File.dirname(__FILE__), '../app/overrides/*.rb')) do |c|
         require_dependency(c)
       end
     end
